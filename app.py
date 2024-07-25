@@ -1,8 +1,17 @@
- 
+import os
+from dotenv import load_dotenv
 import google.generativeai as genai
 import streamlit as st
 
-key = "AIzaSyCLnsWKej1332p43NeKYu5XoFrTlKPxruY"
+# Load environment variables from .env file
+load_dotenv()
+
+# Get the API key from environment variables
+key = os.getenv("GOOGLE_API_KEY")
+
+if not key:
+    raise ValueError("API key not found in environment variables")
+
 genai.configure(api_key=key)
 
 st.title("Welcome to my Streamlit app")
